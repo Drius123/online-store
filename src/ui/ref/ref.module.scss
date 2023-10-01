@@ -1,0 +1,23 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.link {
+  @include mixin.font($size: 14, $height: 120%, $weight: 400);
+  @include mixin.adaptiveClamp($property: font-size, $startSize: 14, $minSize: 12);
+  color: constants.$colorTundora;
+  a {
+    display: flex;
+    align-items: center;
+    column-gap: functions.rem(10);
+  }
+
+  &__form {
+    color: constants.$whiteColor;
+  }
+
+  &__form ~ img {
+    height: functions.rem(16);
+    filter: invert(100%);
+  }
+}

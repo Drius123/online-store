@@ -1,0 +1,143 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.product-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  column-gap: functions.rem(30);
+  row-gap: functions.rem(30);
+  padding-top: functions.rem(20);
+  padding-bottom: functions.rem(90);
+
+  .product-name {
+    @include mixin.font($size: 28, $height: 120%, $weight: 500);
+    color: constants.$colorTundora;
+  }
+
+  .product-image {
+    display: flex;
+    flex-direction: column;
+
+    .slider {
+      @include mixin.adaptiveClamp($property: width, $startSize: 700, $minSize: 300);
+
+      img {
+        width: auto;
+        @include mixin.adaptiveClamp($property: height, $startSize: 600, $minSize: 250);
+        cursor: pointer;
+      }
+
+      .modal.active {
+        img {
+          width: auto;
+          @include mixin.adaptiveClamp($property: height, $startSize: 800, $minSize: 300);
+          cursor: auto;
+        }
+      }
+    }
+  }
+
+  .product-performance {
+    display: flex;
+    flex-direction: column;
+    row-gap: functions.rem(20);
+    @include mixin.adaptiveClamp($property: width, $startSize: 456, $minSize: 300);
+
+    .product-name {
+      @include mixin.font($size: 28, $height: 120%, $weight: 500);
+      color: constants.$colorTundora;
+    }
+
+    .product-category {
+      @include mixin.font($size: 14, $height: 120%, $weight: 400);
+      color: constants.$textCategoryColor;
+    }
+
+    .product-size {
+      display: flex;
+      column-gap: functions.rem(45);
+      @include mixin.font($size: 14, $height: 120%, $weight: 400);
+      color: constants.$colorTundora;
+
+      .select-amount {
+        display: flex;
+        flex-direction: column;
+        row-gap: functions.rem(17);
+      }
+
+      .sizes {
+        display: flex;
+        flex-direction: column;
+        row-gap: functions.rem(17);
+      }
+
+      .color {
+        display: flex;
+        flex-direction: column;
+        row-gap: functions.rem(17);
+      }
+    }
+
+    .product-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: functions.rem(10);
+      flex-wrap: wrap;
+
+      .price {
+        @include mixin.font($size: 28, $height: 120%, $weight: 500);
+        color: constants.$colorTundora;
+      }
+
+      .discount {
+        position: relative;
+        font-size: functions.rem(12);
+        color: constants.$textStrikethrough;
+        text-decoration: line-through;
+        text-decoration-color: red;
+      }
+      .crossed-out-price {
+        color: constants.$textCategoryColor;
+        @include mixin.font($size: 28, $height: 120%, $weight: 500);
+      }
+
+      svg {
+        position: relative;
+      }
+
+      button {
+        display: flex;
+        flex-direction: row-reverse;
+        width: functions.rem(143);
+        height: functions.rem(41);
+
+        @include mixin.last {
+          justify-content: space-between;
+          background-color: constants.$whiteColor;
+          color: constants.$colorTundora;
+          @include mixin.font($size: 12, $height: 120%, $weight: 400);
+          width: functions.rem(170);
+        }
+      }
+    }
+
+    .product-description {
+      display: flex;
+      flex-direction: column;
+      row-gap: functions.rem(10);
+
+      .description {
+        @include mixin.font($size: 12, $height: 120%, $weight: 400);
+        color: constants.$colorTundora;
+      }
+
+      span {
+        @include mixin.font($size: 12, $height: 120%, $weight: 400);
+        color: constants.$textCategoryColor;
+      }
+    }
+  }
+}

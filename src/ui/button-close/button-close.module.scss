@@ -1,0 +1,34 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.button-close {
+  width: functions.rem(18);
+  height: functions.rem(18);
+  position: absolute;
+  right: functions.rem(10);
+  top: functions.rem(10);
+  background-color: constants.$bgBurgerColor;
+  border-radius: functions.rem(10);
+}
+.button-close::after {
+  content: '';
+  display: block;
+  position: relative;
+  left: functions.rem(4);
+  bottom: functions.rem(1);
+  width: functions.rem(10);
+  height: functions.rem(1);
+  transform: rotate(45deg);
+  background-color: constants.$bgBurgerLineColor;
+}
+.button-close::before {
+  content: '';
+  display: block;
+  position: relative;
+  left: functions.rem(4);
+  width: functions.rem(10);
+  height: functions.rem(1);
+  transform: rotate(-45deg);
+  background-color: constants.$bgBurgerLineColor;
+}

@@ -1,0 +1,59 @@
+$maxWidth: 1920;
+$maxWidthContainer: 1280;
+$containerWidth: 1180;
+$tableWidth: 768;
+$minWidth: 320;
+
+$mainOffset: 50;
+$mainFont: 'Montserrat';
+$mainWeight: 400;
+
+$whiteColor: rgb(255, 255, 255);
+$redColor: rgb(255, 0, 0);
+$promotionColor: #d74444;
+$blackColor: rgb(0, 0, 0);
+$bgColor: #f9f9f9;
+$bgInput: #fcfcfc;
+$bgCard: #eff3f4;
+$textCategoryColor: #686868;
+$bgBurgerColor: rgba(240, 240, 240, 1);
+$bgBurgerLineColor: rgba(191, 191, 191, 1);
+$colorBlueDianne: rgb(36, 84, 98); // #245462
+$colorTundora: rgb(65, 65, 65); //#414141
+$colorSilver: rgb(204, 204, 204); //#cccccc
+$colorDustyGray: rgb(150, 150, 150); //#969696
+$colorAlabaster: rgb(248, 248, 248); //#F8F8F8
+$colorDoveGray: rgb(104, 104, 104); //#686868
+$colorSpinnerBg: #a04668;
+$colorSpinnerTop: #254e70;
+
+$gradient: linear-gradient(90deg, #f1f1f1 0%, rgba(238, 246, 250, 0.19) 77.22%, rgba(237, 248, 252, 0) 100%);
+
+$colorBackgroundAuthLayout: $colorTundora;
+
+$textPrimaryColor: $colorTundora;
+$textSecondaryColor: $whiteColor;
+$textStrikethrough: $colorSilver;
+
+$productBorderColor: $colorDustyGray;
+
+$breadcrumbsFont: $colorDustyGray;
+
+$buttonBackgroundPrimary: $colorBlueDianne;
+
+$menuColor: rgba(0, 0, 0, 0.07);
+
+$fontFamily: $mainFont, sans-serif;
+$fontStyle: normal;
+$fontLetter: normal;
+$fontSize: 16;
+$fontWeight: $mainWeight;
+
+$standartTrans: all 280ms;
+
+$filterBoxShadow: 0px 15px 30px 0px rgba(213, 226, 231, 0.4);
+$boxShadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.07);
+$filterBackgroundcolor: $colorSilver;
+$filterInputBackground: $colorAlabaster;
+$filterFontColor: $colorDoveGray;
+$filterFontTitleColor: $colorTundora;

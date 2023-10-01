@@ -1,0 +1,119 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.products {
+  &__header {
+    margin-top: functions.rem(10);
+    margin-bottom: functions.rem(20);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: functions.rem(10);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__item {
+    display: flex;
+    max-width: functions.rem(263);
+    width: 100%;
+  }
+
+  &__button-filter {
+    width: 100%;
+    height: functions.rem(29);
+
+    color: constants.$filterFontTitleColor;
+    font-size: functions.rem(14);
+
+    border-radius: functions.rem(4);
+    background-color: constants.$filterBackgroundcolor;
+  }
+
+  .bestsellers {
+    @include mixin.font($size: 16, $height: 120%, $weight: 400);
+  }
+
+  .product-wrapper {
+    display: flex;
+  }
+
+  .products__list {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: functions.rem(10);
+    align-items: center;
+    justify-content: center;
+    .button-pagination {
+      display: flex;
+      column-gap: functions.rem(60);
+      width: 100%;
+      max-width: functions.rem(500);
+      align-items: center;
+      .page-number {
+        @include mixin.font($size: 18, $height: 120%, $weight: 600);
+      }
+      .btn-next,
+      .btn-prev {
+        width: 100%;
+        height: 100%;
+        padding-left: functions.rem(10);
+        padding-right: functions.rem(10);
+        padding-top: functions.rem(10);
+        padding-bottom: functions.rem(10);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: inherit;
+
+        background-color: constants.$buttonBackgroundPrimary;
+
+        color: constants.$textSecondaryColor;
+        font-size: functions.rem(13);
+        font-weight: 400;
+      }
+      .btn-next:disabled,
+      .btn-prev:disabled {
+        background-color: constants.$colorSilver;
+      }
+    }
+  }
+}
+
+.not-category {
+  text-align: center;
+}
+
+.filter {
+  @include mixin.media-tablet {
+    display: none;
+  }
+}
+
+.filter-mobile {
+  display: none;
+  max-width: functions.rem(250);
+  width: 100%;
+  position: relative;
+
+  @include mixin.media-tablet {
+    display: block;
+  }
+
+  &__body {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    left: 0;
+    top: functions.rem(45);
+  }
+
+  &__body.active {
+    display: block;
+  }
+}

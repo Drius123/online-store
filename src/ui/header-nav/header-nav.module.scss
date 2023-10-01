@@ -1,0 +1,36 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.nav {
+  .nav-list {
+    display: flex;
+    column-gap: functions.rem(30);
+    .nav__item {
+      a {
+        @include mixin.font($size: 14, $height: 120%, $weight: 400);
+        @include mixin.adaptiveClamp($property: font-size, $startSize: 14, $minSize: 12);
+        color: constants.$colorTundora;
+      }
+    }
+  }
+}
+.nav.burger {
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position: relative;
+    right: functions.rem(35);
+    row-gap: functions.rem(35);
+  }
+}
+
+@include mixin.media-laptop {
+  .nav {
+    display: none;
+  }
+  .burger {
+    display: block;
+  }
+}

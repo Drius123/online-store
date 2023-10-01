@@ -1,0 +1,27 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+button {
+  background-color: constants.$whiteColor;
+  position: relative;
+  svg {
+    position: absolute;
+    right: 0;
+  }
+  .fill {
+    svg {
+      fill: black;
+      animation: fade 0.5s linear forwards;
+    }
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

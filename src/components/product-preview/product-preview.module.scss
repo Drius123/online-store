@@ -1,0 +1,89 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.product {
+  padding: functions.rem(42) functions.rem(20) functions.rem(20);
+
+  max-width: functions.rem(263);
+  height: functions.rem(488);
+
+  display: flex;
+  flex-direction: column;
+  row-gap: functions.rem(20);
+  flex-grow: 1;
+
+  border-radius: functions.rem(6);
+  border: functions.rem(1) solid constants.$productBorderColor;
+  background-color: white;
+
+  color: constants.$textPrimaryColor;
+  font-size: functions.rem(16);
+  font-weight: 500;
+  text-align: left;
+  transition: constants.$standartTrans;
+
+  @include mixin.anyHover {
+    cursor: pointer;
+    scale: 1.03;
+    transition: constants.$standartTrans;
+
+    .product {
+      &__button {
+        display: block;
+      }
+    }
+  }
+
+  &__image {
+    margin: 0 auto;
+    margin-bottom: functions.rem(54);
+  }
+
+  &__title {
+    flex: 1;
+    margin-bottom: functions.rem(6);
+    @include mixin.font($size: 16, $height: 120%, $weight: 600);
+    @include mixin.adaptiveClamp($property: font-size, $startSize: 16, $minSize: 12);
+  }
+
+  &__category {
+    margin-bottom: functions.rem(9);
+
+    font-size: functions.rem(11);
+    font-weight: 400;
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    column-gap: functions.rem(6);
+    @include mixin.font($size: 16, $height: 120%, $weight: 600);
+    @include mixin.adaptiveClamp($property: font-size, $startSize: 16, $minSize: 12);
+
+    .price {
+    }
+
+    .discount {
+      position: relative;
+      font-size: functions.rem(12);
+      color: constants.$textStrikethrough;
+      text-decoration: line-through;
+      text-decoration-color: red;
+    }
+
+    .crossed-out-price {
+      font-size: functions.rem(20);
+    }
+  }
+
+  &__button {
+    display: none;
+    height: functions.rem(43);
+    animation: fade 0.5s linear forwards;
+
+    @include mixin.media-tablet {
+      display: block;
+    }
+  }
+}

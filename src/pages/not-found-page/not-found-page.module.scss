@@ -1,0 +1,9 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.container {
+  margin-bottom: functions.rem(20);
+  text-align: center;
+  color: constants.$textSecondaryColor;
+}

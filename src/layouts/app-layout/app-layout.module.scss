@@ -1,0 +1,24 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.app-layout {
+  &__title {
+    text-align: center;
+    color: constants.$textPrimaryColor;
+
+    @include mixin.font($size: 70, $height: 120%, $weight: 600);
+    @include mixin.adaptiveClamp($property: font-size, $startSize: 70, $minSize: 30);
+  }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+
+    section {
+      flex: 1;
+    }
+  }
+}

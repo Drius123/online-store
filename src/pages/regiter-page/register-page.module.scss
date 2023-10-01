@@ -1,0 +1,17 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.auth {
+  padding: functions.rem(10) functions.rem(20);
+  @include mixin.adaptiveClamp($property: width, $startSize: 500, $minSize: 288);
+
+  border: functions.rem(1) solid constants.$textSecondaryColor;
+  border-radius: functions.rem(10);
+
+  &__title {
+    margin-bottom: functions.rem(20);
+    text-align: center;
+    color: constants.$textSecondaryColor;
+  }
+}

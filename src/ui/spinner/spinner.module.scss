@@ -1,0 +1,56 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.spin-wrapper {
+  position: relative;
+  margin-top: functions.rem(50);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .spinner {
+    height: functions.rem(60);
+    width: functions.rem(60);
+    border: functions.rem(3) solid transparent;
+    border-top-color: constants.$colorSpinnerBg;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      border: functions.rem(3) solid transparent;
+      border-radius: 50%;
+    }
+
+    &:before {
+      border-top-color: constants.$colorSpinnerTop;
+      top: functions.rem(-12);
+      left: functions.rem(-12);
+      right: functions.rem(-12);
+      bottom: functions.rem(-12);
+      animation: spin 3s linear infinite;
+    }
+
+    &:after {
+      border-top-color: constants.$bgColor;
+      top: functions.rem(6);
+      left: functions.rem(6);
+      right: functions.rem(6);
+      bottom: functions.rem(6);
+      animation: spin 4s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

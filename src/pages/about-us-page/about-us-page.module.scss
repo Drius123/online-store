@@ -1,0 +1,22 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.about-us {
+  @include mixin.font($size: 40, $height: 120%, $weight: 500);
+  @include mixin.adaptiveClamp($property: font-size, $startSize: 40, $minSize: 18);
+  .about-us-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: functions.rem(30);
+    .collaboration {
+      @include mixin.font($size: 30, $height: 120%, $weight: 500, $style: italic);
+      @include mixin.adaptiveClamp($property: font-size, $startSize: 30, $minSize: 18);
+    }
+    .rs_school {
+      width: functions.rem(200);
+      height: auto;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.footer {
+  .footer-nav {
+    display: flex;
+    justify-content: space-between;
+    nav {
+      .nav-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: functions.rem(50);
+        row-gap: functions.rem(7);
+        padding-top: functions.rem(10);
+        .nav__item {
+          color: constants.$colorTundora;
+          @include mixin.font($size: 14, $height: 127%, $weight: 400);
+        }
+        span {
+          color: constants.$blackColor;
+          @include mixin.font($size: 14, $height: 127%, $weight: 500);
+        }
+      }
+    }
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: end;
+      row-gap: functions.rem(10);
+      a {
+        color: constants.$blackColor;
+        @include mixin.font($size: 42, $height: 120%, $weight: 900);
+      }
+      span {
+        color: constants.$colorTundora;
+        @include mixin.font($size: 14, $height: 127%, $weight: 400);
+        text-align: right;
+      }
+    }
+  }
+  .footer-social-media {
+    display: flex;
+    justify-content: space-between;
+    column-gap: functions.rem(30);
+    padding-top: functions.rem(35);
+    padding-bottom: functions.rem(35);
+    .links {
+      display: flex;
+      column-gap: functions.rem(30);
+      a {
+        @include mixin.font($size: 14, $height: 127%, $weight: 400);
+        @include mixin.first {
+          color: constants.$promotionColor;
+        }
+      }
+    }
+    .social-media {
+      display: flex;
+      column-gap: functions.rem(30);
+      .link {
+        a {
+          display: flex;
+          flex-direction: row-reverse;
+        }
+      }
+    }
+  }
+}
+
+@include mixin.media-laptop {
+  .footer {
+    .footer-nav {
+      nav {
+        display: none;
+      }
+      .footer-contact {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+    .footer-social-media {
+      display: flex;
+      justify-content: space-between;
+      column-gap: functions.rem(30);
+      padding-top: functions.rem(35);
+      padding-bottom: functions.rem(35);
+      .links {
+        display: none;
+      }
+      .social-media {
+        flex-wrap: wrap-reverse;
+        flex-direction: row-reverse;
+        row-gap: functions.rem(12);
+      }
+    }
+  }
+}

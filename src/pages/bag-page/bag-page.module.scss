@@ -1,0 +1,143 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.products {
+  &__item {
+    display: block;
+    width: 100%;
+  }
+  .link {
+    text-transform: capitalize;
+    color: constants.$breadcrumbsFont;
+    padding-bottom: functions.rem(30);
+    padding-top: functions.rem(30);
+  }
+  .button-clear-bag {
+    position: relative;
+    height: functions.rem(65);
+    padding-top: functions.rem(15);
+    button {
+      @include mixin.adaptiveClamp($property: width, $startSize: 200, $minSize: 130);
+      height: functions.rem(40);
+      position: absolute;
+      right: 0;
+    }
+  }
+  .title {
+    display: flex;
+    justify-content: space-between;
+    @include mixin.font($size: 18, $height: 120%, $weight: 600);
+    @include mixin.adaptiveClamp($property: font-size, $startSize: 18, $minSize: 12);
+  }
+
+  .bestsellers {
+    @include mixin.font($size: 16, $height: 120%, $weight: 400);
+  }
+
+  .products__list {
+    display: flex;
+    flex-direction: column;
+    gap: functions.rem(10);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .total-price {
+    position: relative;
+    padding-bottom: functions.rem(60);
+    padding-top: functions.rem(60);
+    .price {
+      position: absolute;
+      right: 0;
+      display: flex;
+      align-items: center;
+      column-gap: functions.rem(20);
+      span {
+        @include mixin.font($size: 20, $height: 120%, $weight: 600);
+        @include mixin.adaptiveClamp($property: font-size, $startSize: 20, $minSize: 12);
+      }
+      button {
+        @include mixin.adaptiveClamp($property: width, $startSize: 200, $minSize: 130);
+        height: functions.rem(40);
+      }
+      .discount {
+        position: relative;
+        color: constants.$textStrikethrough;
+        text-decoration: line-through;
+        text-decoration-color: red;
+      }
+    }
+  }
+}
+
+.not-category {
+  text-align: center;
+}
+
+.filter {
+  @include mixin.media-tablet {
+    display: none;
+  }
+}
+
+.filter-mobile {
+  display: none;
+  max-width: functions.rem(250);
+  width: 100%;
+  position: relative;
+
+  @include mixin.media-tablet {
+    display: block;
+  }
+
+  &__body {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    left: 0;
+    top: functions.rem(45);
+  }
+
+  &__body.active {
+    display: block;
+  }
+}
+
+.input-bar {
+  display: flex;
+  column-gap: functions.rem(10);
+  background-color: constants.$bgColor;
+  @include mixin.adaptiveClamp($property: width, $startSize: 280, $minSize: 240);
+  height: functions.rem(40);
+  input {
+    width: 100%;
+    @include mixin.font($size: 14, $height: 120%, $weight: 400);
+    color: constants.$colorTundora;
+  }
+  button {
+    margin-left: functions.rem(10);
+  }
+}
+
+.error {
+  color: constants.$redColor;
+}
+
+.message {
+  @include mixin.font($size: 18, $height: 120%, $weight: 600);
+}
+
+.message-link {
+  @include mixin.font($size: 18, $height: 120%, $weight: 400);
+  text-decoration: underline;
+  color: constants.$colorTundora;
+}
+
+@include mixin.media-tablet {
+  .search-bar {
+    width: 100%;
+    order: 5;
+  }
+}

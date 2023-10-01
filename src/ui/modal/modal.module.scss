@@ -1,0 +1,60 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.modal {
+  background-color: rgb(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: constants.$standartTrans;
+  cursor: pointer;
+  &__content {
+    padding: functions.rem(20);
+    border-radius: functions.rem(12);
+    transform: scale(0.5);
+    transition: constants.$standartTrans;
+    @include mixin.adaptiveClamp($property: width, $startSize: 1000, $minSize: 300);
+  }
+  &__content.active {
+    transform: scale(1);
+    transition: constants.$standartTrans;
+    background-color: constants.$whiteColor;
+  }
+  .modal-btn {
+    button {
+      position: absolute;
+      right: functions.rem(20);
+      height: functions.rem(40);
+      width: functions.rem(40);
+      border-radius: functions.rem(20);
+      transition: constants.$standartTrans;
+      @include mixin.pseudocell(before) {
+        left: functions.rem(15);
+      }
+      @include mixin.pseudocell(after) {
+        left: functions.rem(15);
+        top: functions.rem(20);
+      }
+      @include mixin.anyHover {
+        transition: constants.$standartTrans;
+        background-color: constants.$colorTundora;
+        opacity: 0.2;
+      }
+    }
+  }
+}
+
+.modal.active {
+  opacity: 1;
+  transition: constants.$standartTrans;
+  pointer-events: all;
+}

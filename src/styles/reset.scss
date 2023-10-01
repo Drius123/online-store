@@ -1,0 +1,111 @@
+@use './constants.module.scss' as constants;
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+:focus,
+:active,
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html {
+  scroll-behavior: smooth;
+
+  &.lock {
+    overflow: hidden;
+    touch-action: none;
+  }
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-size: constants.$fontSize + px;
+  font-family: constants.$fontFamily;
+  font-weight: constants.$fontWeight;
+  line-height: 1;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+  background-color: transparent;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button,
+a {
+  user-select: none;
+}
+
+button {
+  cursor: pointer;
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+}
+
+a {
+  text-decoration: none;
+
+  &:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:link {
+    color: inherit;
+  }
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+sup {
+  color: inherit;
+}

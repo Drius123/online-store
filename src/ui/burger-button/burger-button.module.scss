@@ -1,0 +1,40 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.nav-burger {
+  display: none;
+  width: functions.rem(20);
+  height: functions.rem(11);
+  cursor: pointer;
+  span {
+    display: block;
+    width: functions.rem(20);
+    height: functions.rem(1);
+    background-color: constants.$blackColor;
+  }
+}
+.nav-burger::after {
+  content: '';
+  display: block;
+  position: relative;
+  bottom: functions.rem(10);
+  width: functions.rem(20);
+  height: functions.rem(1);
+  background-color: constants.$blackColor;
+}
+.nav-burger::before {
+  content: '';
+  display: block;
+  position: relative;
+  top: functions.rem(10);
+  width: functions.rem(20);
+  height: functions.rem(1);
+  background-color: constants.$blackColor;
+}
+
+@include mixin.media-laptop {
+  .nav-burger {
+    display: block;
+  }
+}

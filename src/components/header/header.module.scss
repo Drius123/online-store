@@ -1,0 +1,111 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.header {
+  background-color: constants.$whiteColor;
+
+  .header-nav {
+    padding-top: functions.rem(15);
+    padding-bottom: functions.rem(25);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: functions.rem(10);
+    row-gap: functions.rem(20);
+    flex-wrap: wrap;
+
+    .user-bar {
+      display: flex;
+      column-gap: functions.rem(20);
+      .bag-number {
+        @include mixin.font($size: 16, $height: 120%, $weight: 400);
+      }
+    }
+
+    .delivery {
+      @include mixin.font($size: 14, $height: 120%, $weight: 400);
+      @include mixin.adaptiveClamp($property: font-size, $startSize: 14, $minSize: 12);
+      color: constants.$colorTundora;
+      a {
+        display: flex;
+        column-gap: functions.rem(10);
+      }
+    }
+  }
+
+  .header-menu {
+    display: flex;
+    column-gap: functions.rem(20);
+    align-items: center;
+    padding-left: functions.rem(10);
+    box-shadow: 0 functions.rem(2) functions.rem(4) 0 constants.$menuColor;
+    padding-bottom: functions.rem(5);
+
+    @include mixin.media-tablet {
+      display: none;
+    }
+
+    .header-menu-burger {
+      width: functions.rem(20);
+      height: functions.rem(21);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        display: block;
+        width: functions.rem(3);
+        height: functions.rem(3);
+        border-radius: functions.rem(10);
+        background-color: constants.$blackColor;
+      }
+    }
+
+    .header-menu-burger::after {
+      content: '';
+      display: block;
+      position: relative;
+      top: functions.rem(7);
+      width: functions.rem(3);
+      height: functions.rem(3);
+      border-radius: functions.rem(10);
+      background-color: constants.$blackColor;
+      z-index: 1;
+    }
+
+    .header-menu-burger::before {
+      content: '';
+      display: block;
+      position: relative;
+      bottom: functions.rem(7);
+      width: functions.rem(3);
+      height: functions.rem(3);
+      border-radius: functions.rem(10);
+      background-color: constants.$blackColor;
+      z-index: 1;
+    }
+  }
+}
+
+@include mixin.media-laptop {
+  .header {
+    .header-nav {
+      #telephone-header {
+        display: none;
+      }
+    }
+  }
+}
+
+@include mixin.media-tablet {
+  .header {
+    .header-nav {
+      .delivery {
+        display: none;
+      }
+    }
+  }
+}

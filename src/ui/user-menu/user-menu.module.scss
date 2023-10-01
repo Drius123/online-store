@@ -1,0 +1,50 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.user-menu {
+  position: fixed;
+  transform: translateY(-300%);
+  background-color: constants.$bgColor;
+  border-radius: functions.rem(10);
+  transition: constants.$standartTrans;
+  z-index: 100;
+  nav {
+    .user-menu-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      row-gap: functions.rem(10);
+      padding: functions.rem(35);
+      padding-right: functions.rem(40);
+      &__item {
+        @include mixin.font($size: 15, $height: 120%, $weight: 500);
+        color: constants.$colorTundora;
+        @include mixin.anyHover {
+          text-decoration: underline;
+          color: constants.$blackColor;
+        }
+        a {
+          display: flex;
+          align-items: center;
+          column-gap: functions.rem(10);
+        }
+        img {
+          width: functions.rem(20);
+          height: auto;
+        }
+      }
+    }
+  }
+}
+.user-menu.active {
+  transform: translateY(-30%);
+  transition: constants.$standartTrans;
+}
+
+@include mixin.media-laptop {
+  .user-menu {
+    right: 5%;
+  }
+}

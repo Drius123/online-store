@@ -1,0 +1,12 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+
+.select {
+  padding: 0 functions.rem(10);
+  width: 100%;
+  height: functions.rem(40);
+  border-radius: inherit;
+}
+.error {
+  border: functions.rem(2) solid constants.$redColor;
+}

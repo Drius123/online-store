@@ -1,0 +1,149 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.filter {
+  padding: functions.rem(20) functions.rem(10);
+  width: functions.rem(250);
+
+  border-radius: functions.rem(10);
+  box-shadow: constants.$filterBoxShadow;
+  background-color: constants.$filterBackgroundcolor;
+
+  &__item {
+    margin-bottom: functions.rem(30);
+  }
+}
+
+.item {
+  &__title {
+    margin-bottom: functions.rem(15);
+
+    color: constants.$filterFontTitleColor;
+    font-size: functions.rem(14);
+  }
+
+  &__select {
+    select {
+      width: 100%;
+      height: functions.rem(29);
+      border-radius: functions.rem(4);
+      background-color: constants.$filterInputBackground;
+
+      color: constants.$filterFontColor;
+      font-size: functions.rem(12);
+    }
+  }
+}
+
+.price {
+  display: flex;
+  align-items: center;
+
+  input {
+    padding-left: functions.rem(5);
+    padding-right: functions.rem(5);
+
+    width: 50%;
+    height: functions.rem(29);
+
+    border-radius: functions.rem(4);
+    background-color: constants.$filterInputBackground;
+  }
+
+  span {
+    padding-left: functions.rem(5);
+    padding-right: functions.rem(5);
+  }
+}
+
+.ckeckbox-wrapper {
+  display: flex;
+  column-gap: functions.rem(10);
+
+  input {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  span {
+    display: block;
+    z-index: -1;
+    width: functions.rem(16);
+    height: functions.rem(16);
+  }
+
+  .input-Yellow {
+    background-color: yellow;
+  }
+  .input-Black {
+    background-color: Black;
+  }
+  .input-White {
+    background-color: White;
+  }
+  .input-Grey {
+    background-color: Grey;
+  }
+  .input-Hornbeam {
+    background-color: #8fb97b;
+  }
+  .input-Brown {
+    background-color: Brown;
+  }
+
+  label {
+    position: relative;
+  }
+
+  input:checked + span {
+    background-image: url('../../assets/check_circle_on.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  input:checked + .input-Black {
+    background-image: url('../../assets/check_circle_on_white.svg');
+  }
+}
+
+.button-sort {
+  padding-left: functions.rem(10);
+  padding-right: functions.rem(10);
+
+  width: 100%;
+  height: functions.rem(29);
+
+  border-radius: functions.rem(4);
+  background-color: constants.$filterInputBackground;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: functions.rem(10);
+
+  span {
+    color: constants.$filterFontTitleColor;
+    font-size: functions.rem(12);
+  }
+
+  img {
+    transition: constants.$standartTrans;
+  }
+
+  img.active {
+    transform: rotate(180deg);
+  }
+}
+
+.button-sort + .button-sort {
+  margin-top: functions.rem(15);
+}
+
+.button-reset {
+  justify-content: center;
+}

@@ -1,0 +1,30 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+
+.button {
+  width: 100%;
+  height: 100%;
+
+  padding-left: functions.rem(10);
+  padding-right: functions.rem(10);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: inherit;
+
+  background-color: constants.$buttonBackgroundPrimary;
+
+  color: constants.$textSecondaryColor;
+  font-size: functions.rem(13);
+  font-weight: 400;
+}
+
+.button:disabled {
+  background-color: constants.$colorSilver;
+}
+
+.hidden {
+  display: none;
+}

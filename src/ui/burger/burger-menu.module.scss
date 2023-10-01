@@ -1,0 +1,34 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.burger-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  width: functions.rem(227);
+  background-color: constants.$bgColor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-100%);
+  transition: constants.$standartTrans;
+  .nav-burger {
+    display: flex;
+    flex-direction: column;
+  }
+  .title {
+    @include mixin.font($size: 13, $height: 120%, $weight: 500);
+    padding-top: functions.rem(35);
+    padding-bottom: functions.rem(35);
+    position: relative;
+    right: functions.rem(45);
+    color: constants.$colorTundora;
+  }
+}
+.burger-menu.active {
+  transform: translateX(0);
+  transition: constants.$standartTrans;
+}

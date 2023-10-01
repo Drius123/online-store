@@ -1,0 +1,112 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.product {
+  padding: functions.rem(10);
+
+  display: flex;
+  column-gap: functions.rem(10);
+
+  border-radius: functions.rem(15);
+  box-shadow: constants.$boxShadow;
+
+  background-color: white;
+
+  color: constants.$textPrimaryColor;
+  font-size: functions.rem(16);
+  font-weight: 500;
+  transition: constants.$standartTrans;
+
+  .product-inf {
+    flex: 40%;
+    display: flex;
+    flex-direction: column;
+    row-gap: functions.rem(5);
+    .color {
+      display: flex;
+      flex-direction: column;
+      row-gap: functions.rem(5);
+      max-width: functions.rem(40);
+    }
+    .product__size {
+      display: flex;
+      flex-direction: column;
+      row-gap: functions.rem(5);
+    }
+  }
+
+  &__image {
+    margin: 0 auto;
+    flex: 20%;
+    img {
+      @include mixin.adaptiveClamp($property: width, $startSize: 200, $minSize: 100);
+      height: auto;
+    }
+  }
+
+  &__title {
+    margin-bottom: functions.rem(6);
+    @include mixin.font($size: 16, $height: 120%, $weight: 600);
+    @include mixin.adaptiveClamp($property: font-size, $startSize: 16, $minSize: 12);
+  }
+
+  &__category {
+    margin-bottom: functions.rem(9);
+
+    font-size: functions.rem(11);
+    font-weight: 400;
+  }
+
+  &__price {
+    display: flex;
+    justify-content: end;
+    column-gap: functions.rem(6);
+    @include mixin.font($size: 16, $height: 120%, $weight: 600);
+    @include mixin.adaptiveClamp($property: font-size, $startSize: 16, $minSize: 12);
+    flex: 10%;
+
+    .discount {
+      position: relative;
+      font-size: functions.rem(12);
+      color: constants.$textStrikethrough;
+      text-decoration: line-through;
+      text-decoration-color: red;
+    }
+
+    .crossed-out-price {
+      font-size: functions.rem(20);
+    }
+  }
+
+  &__button {
+    width: functions.rem(57);
+    button {
+      background-color: constants.$bgColor;
+      color: constants.$colorTundora;
+    }
+  }
+}
+
+@media (max-width: (700px)) {
+  .product {
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    row-gap: functions.rem(10);
+    &__image {
+      margin: inherit;
+    }
+    &__price {
+      justify-content: flex-start;
+    }
+    &__button {
+      position: absolute;
+      right: 0;
+      top: functions.rem(10);
+      button {
+        background-color: inherit;
+      }
+    }
+  }
+}

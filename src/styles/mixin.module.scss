@@ -1,0 +1,219 @@
+@use 'sass:math';
+@use './constants.module.scss' as constants;
+@use './functions.module.scss' as functions;
+
+@mixin textGradient($gradient) {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin font(
+  $size,
+  $height: $size,
+  $weight: constants.$fontWeight,
+  $style: constants.$fontStyle,
+  $letter: constants.$fontLetter
+) {
+  font-size: functions.rem($size);
+  font-style: $style;
+  font-weight: $weight;
+  line-height: $height;
+  letter-spacing: $letter;
+}
+
+@mixin media-laptop {
+  @media (max-width: (constants.$maxWidthContainer + px)) {
+    @content;
+  }
+}
+
+@mixin media-tablet {
+  @media (max-width: (constants.$tableWidth + px)) {
+    @content;
+  }
+}
+
+@mixin media-mobile {
+  @media (max-width: (constants.$minWidth + px)) {
+    @content;
+  }
+}
+
+@mixin anyHover() {
+  @media (any-hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin notLast() {
+  &:not(:last-child) {
+    @content;
+  }
+}
+
+@mixin notFirst() {
+  &:not(:first-child) {
+    @content;
+  }
+}
+
+@mixin last() {
+  &:last-child {
+    @content;
+  }
+}
+
+@mixin first() {
+  &:first-child {
+    @content;
+  }
+}
+
+@mixin lineClamp($value) {
+  display: -webkit-box;
+  -webkit-line-clamp: $value;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin styledPlaceholder($color, $fontSize: inherit, $lineHeight: normal) {
+  &:-moz-placeholder {
+    color: $color;
+    font-size: $fontSize;
+    line-height: $lineHeight;
+  }
+
+  &::-moz-placeholder {
+    color: $color;
+    font-size: $fontSize;
+    line-height: $lineHeight;
+  }
+
+  &::-webkit-input-placeholder {
+    color: $color;
+    font-size: $fontSize;
+    line-height: $lineHeight;
+  }
+
+  &:-ms-input-placeholder {
+    color: $color;
+    font-size: $fontSize;
+    line-height: $lineHeight;
+  }
+}
+
+@mixin hidePlaceholder($time: 300, $effect: ease) {
+  &::-webkit-input-placeholder {
+    opacity: 1;
+    transition: opacity #{$time}+ ms $effect;
+  }
+
+  &::-moz-placeholder {
+    opacity: 1;
+    transition: opacity #{$time}+ ms $effect;
+  }
+
+  &:-moz-placeholder {
+    opacity: 1;
+    transition: opacity #{$time}+ ms $effect;
+  }
+
+  &:-ms-input-placeholder {
+    opacity: 1;
+    transition: opacity #{$time}+ ms $effect;
+  }
+
+  &:focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: opacity #{$time}+ ms $effect;
+  }
+
+  &:focus::-moz-placeholder {
+    opacity: 0;
+    transition: opacity #{$time}+ ms $effect;
+  }
+
+  &:focus:-moz-placeholder {
+    opacity: 0;
+    transition: opacity #{$time}+ ms $effect;
+  }
+
+  &:focus:-ms-input-placeholder {
+    opacity: 0;
+    transition: opacity #{$time}+ ms $effect;
+  }
+}
+
+@mixin pseudocell($type, $pos: absolute) {
+  &::#{$type} {
+    content: '';
+    position: $pos;
+    @content;
+  }
+}
+
+@mixin adaptiveClamp(
+  $property,
+  $startSize,
+  $minSize,
+  $widthFrom: constants.$containerWidth,
+  $widthTo: constants.$minWidth,
+  $keepSize: 0
+) {
+  $addSize: math.div($startSize - $minSize, 16);
+
+  @if ($widthFrom ==constants.$containerWidth and constants.$maxWidthContainer ==0) {
+    $widthFrom: constants.$maxWidth;
+  }
+
+  @if ($minSize <=0) {
+    $minSize: 0.0001;
+  }
+
+  @if ($startSize <=0) {
+    $startSize: 0.0001;
+  }
+
+  $widthFromMedia: functions.em($widthFrom);
+  $widthToMedia: functions.em($widthTo);
+
+  // Формула плавающего значения
+  // Источник: https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
+  $slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
+  $yIntersection: -$widthTo * $slope + $minSize;
+  $flyValue: #{functions.rem($yIntersection)}' + ' #{$slope * 100}vw;
+
+  $propertyValue: #{'math.clamp(' functions.rem($minSize) ',' $flyValue ',' functions.rem($startSize) ')'};
+
+  @if ($minSize > $startSize) {
+    $propertyValue: #{'math.clamp(' functions.rem($startSize) ',' $flyValue ',' functions.rem($minSize) ')'};
+  }
+
+  @if $widthFrom ==constants.$containerWidth or $widthFrom ==$maxWidth or $keepSize ==1 or $keepSize ==2 {
+    @media (min-width: $widthFromMedia) {
+      #{$property}: functions.rem($startSize);
+    }
+  }
+
+  @media (min-width: $widthToMedia) and (max-width: $widthFromMedia) {
+    @supports (#{$property}: $propertyValue) {
+      #{$property}: $propertyValue;
+    }
+
+    @supports not (#{$property}: $propertyValue) {
+      #{$property}: calc(
+        #{functions.rem($minSize)} + #{$addSize} * (100vw - #{functions.rem($widthTo)}) / #{math.div($widthFrom, 16) -
+          math.div($widthTo, 16)}
+      );
+    }
+  }
+
+  @if $widthTo ==constants.$minWidth or $keepSize ==1 or $keepSize ==3 {
+    @media (max-width: $widthToMedia) {
+      #{$property}: functions.rem($minSize);
+    }
+  }
+}

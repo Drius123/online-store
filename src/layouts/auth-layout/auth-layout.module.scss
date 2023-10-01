@@ -1,0 +1,29 @@
+@use '../../styles/constants.module.scss' as constants;
+@use '../../styles/functions.module.scss' as functions;
+@use '../../styles/mixin.module.scss' as mixin;
+
+.app-layout-auth {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: constants.$colorBackgroundAuthLayout;
+}
+
+.logo {
+  position: relative;
+  margin: 0 auto;
+  padding-bottom: functions.rem(10);
+  left: 50%;
+  transform: translateX(-50%);
+
+  filter: invert(100%);
+}
